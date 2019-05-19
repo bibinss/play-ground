@@ -1,5 +1,5 @@
-#SOAP webservice using Spring
-This is a sample demo SOAP webservice project using spring WS libraries.
+# SOAP webservice using Spring
+This is an example SOAP webservice project implemented using spring WS libraries.
 
 It consists of
 1. ws-client
@@ -14,7 +14,8 @@ Run server
 1. cd ws-server
 2. mvn clean verify
 3. mvn spring-boot:run
-4. Ensure that server is app and running and you see the WSDL at http://localhost:8080/ws/airlines.wsdl
+4. Ensure that server is app and running and you see the WSDL at http://localhost:8080/ws/airlines.wsdl.
+
    Client application uses this WSDL to generate stubs.
 
 
@@ -22,15 +23,17 @@ Run Client
 1. cd ws-client
 2. mvn clean verify
 3. mvn spring-boot:run
-4. Invoke the client API - http://localhost:8090/search?destination=JFK. This internally makes a SOAP request to server 
+4. Invoke the client API - http://localhost:8090/search?destination=JFK. 
+   
+   This internally makes a SOAP request to server 
    to get the response. You can see the encrypted SOAP message with signature in the client application logs.
 
-SOAP message sent to server from client is both encrypted and signed.
+    SOAP message sent to server from client is both encrypted and signed.
 
-Encryption is done using the server's public key/certificate (imported to client's keystore) and signature is created 
-using client's private key.
-When Server receives the message it validates the signature using client's public key/certificate (imported to server's keystore) 
-and message is decrypted using client's private key.
+    Encryption is done using the server's public key/certificate (imported to client's keystore) and signature is created 
+    using client's private key.
+    When Server receives the message it validates the signature using client's public key/certificate (imported to server's keystore) 
+    and message is decrypted using client's private key.
 
 
 
