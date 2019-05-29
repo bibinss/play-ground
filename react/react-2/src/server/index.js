@@ -5,7 +5,7 @@ const app = express()
 
 app.use(cors())
 
-app.use(express.static("/public"))
+app.use(express.static("public"))
 
 app.listen(3000, () => {
     console.log("Server is up")
@@ -16,9 +16,9 @@ app.get("*", (req, res) => {
         `<html>
          <head>
             <h1>Demo</h1>
-            <script type="text/javascript" src="/bundle.js"/>
+            <script type="text/javascript" src="/bundle.js"></script>
          </head>   
-         <body></body>
+         <body><div id="app">Hello World</div></body>
          </html>`
     )
 })
