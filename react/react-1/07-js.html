@@ -1,0 +1,45 @@
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+<script type="text/babel">
+    const rootElement = document.getElementById("root")
+
+    class StopWatch extends React.Component {
+
+        state = {time:0, running:false}
+
+        constructor(props) {
+            super(props)
+        }
+
+        handleRun = () => {
+            if (this.state.running) {
+                this.setState({running: false})
+                clearInterval(this.timer)
+            } else {
+                const startTime = Date.now() - this.state.time
+                this.timer = setInterval(() => {
+                    this.setState({time: Date.now() - startTime})
+                })
+                this.setState({running: true})
+            }
+        }
+
+        handleClear = () => {
+            this.setState({time:0, running:false})
+            clearInterval(this.timer)
+        }
+
+        render () {
+            return (
+                <div>
+                    <label>{this.state.time}ms</label>
+                    <button onClick={this.handleRun}>{this.state.running? 'Stop' : 'Start'}</button>
+                    <button onClick={this.handleClear}>Clear</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<StopWatch />, rootElement)
+</script>

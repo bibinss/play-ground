@@ -1,0 +1,27 @@
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+<script type="text/babel">
+    const rootElement = document.getElementById("root")
+    class Button extends React.Component {
+        state = {
+            time : new Date().getSeconds()
+        };
+
+        componentDidMount() {
+            setInterval(() => {
+                this.setState({ time: new Date().getSeconds() })
+            }, 1000);
+        }
+
+        constructor(props) {
+            super(props)
+        }
+        render () {
+            return <div><button>{this.props.children} </button>
+                <div>time now: {this.state.time}</div></div>
+        }
+    }
+    ReactDOM.render(<Button >Hello Bibin</Button>, rootElement)
+</script>
