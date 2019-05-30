@@ -12,11 +12,35 @@ class Grid_bk extends Component {
             repos = this.props.staticContext.data
         }
 
-        this.state = {repos}
+        this.state = {repos,
+            loading: repos ? false : true}
+    }
+
+    componentDidMount () {
+        if (!this.state.repos) {
+            this.fetchRepos(this.props.match.params.id)
+        }
+    }
+    componentDidUpdate (prevProps, prevState) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.fetchRepos(this.props.match.params.id)
+        }
+    }
+
+    fetchRepos (lang) {
+        this.setState(() => ({
+            loading: true
+        }))
+
+        this.props.fetchInitialData(lang)
+            .then((repos) => this.setState(() => ({
+                repos,
+                loading: false,
+            })))
     }
 
     render() {
-        const { repos } = this.state
+        const { repos, loading } = this.state
 
         return (
             <ul style={{display: 'flex', flexWrap: 'wrap'}}>
