@@ -16,7 +16,7 @@ app.get("*", (req, res) => {
         `<html>
          <head>
             <h1>Demo</h1>
-            <script type="text/javascript" src="/bundle.js"></script>
+            <script src="/bundle.js" defer></script>
          </head>   
          <body><div id="app">Hello World</div></body>
          </html>`
